@@ -3,4 +3,6 @@ simple wikipedia scraper to scrape wikipedia cite "https://en.wikipedia.org/wiki
 
 
 to run the code 
-  pip install requests_html pip install bs4 pip install pandas
+  pip install requests_html
+  pip install bs4
+  pip install pandas
