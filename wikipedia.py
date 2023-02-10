@@ -49,4 +49,5 @@ except:
 
 
 scraped = pd.DataFrame(data)
-print(scraped)
+scraped.to_json("wikipedia-scraping.json")
+scraped.to_csv("wikipedia-scraping.csv", index=False)
