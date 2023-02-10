@@ -16,6 +16,7 @@ def getpage(url):
 
 
 def get_data(soup):
+    data = []
     items = page.find_all("li", class_="mw-search-result mw-search-result-ns-0")
     print("total Items =", len(items))
     for item in items:
@@ -24,8 +25,9 @@ def get_data(soup):
         link = "https://en.wikipedia.org" + str(
             item.find("div", class_="mw-search-result-heading").find("a")["href"]
         )
-
-        return name
+        dict = {"name": name, "link": link, "description": desc}
+        data.append(dict)
+    return data
 
 
 soup = getpage(url)
