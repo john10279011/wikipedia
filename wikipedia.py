@@ -6,8 +6,6 @@ url = "https://en.wikipedia.org/wiki/Special:Search?go=Go&search=latest+trending
 
 sesh = HTMLSession()
 
-page = BeautifulSoup(sesh.get(url).content, "html.parser")
-
 data = []
 
 
@@ -18,7 +16,7 @@ def getpage(url):
 
 
 def get_data(soup):
-    items = page.find_all("li", class_="mw-search-result mw-search-result-ns-0")
+    items = soup.find_all("li", class_="mw-search-result mw-search-result-ns-0")
     print("total Items found=", len(items))
     for item in items:
         name = item.find("div", class_="mw-search-result-heading").find("a").text
@@ -28,7 +26,7 @@ def get_data(soup):
         )
         dict = {"name": name, "link": link, "description": desc}
         data.append(dict)
-    return data
+    return
 
 
 def nextpage(soup):
@@ -49,5 +47,6 @@ except:
 
 
 scraped = pd.DataFrame(data)
-scraped.to_json("wikipedia-scraping.json")
-scraped.to_csv("wikipedia-scraping.csv", index=False)
+print(scraped)
+# scraped.to_json("wikipedia-scraping.json")
+# scraped.to_csv("wikipedia-scraping.csv", index=False)
