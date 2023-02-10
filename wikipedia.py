@@ -31,10 +31,15 @@ def get_data(soup):
 
 
 def nextpage(soup):
-    nextpg = soup.find("a", class_="mw-nextlink")["href"]
+    nextpg = "https://en.wikipedia.org" + str(
+        soup.find("a", class_="mw-nextlink")["href"]
+    )
     return nextpg
 
 
-soup = getpage(url)
-# get_data(soup)
-print(nextpage(soup))
+while True:
+
+    soup = getpage(url)
+    # get_data(soup)
+    url = nextpage(soup)
+    print(nextpage(soup))
