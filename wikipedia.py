@@ -7,4 +7,11 @@ url = "https://en.wikipedia.org/wiki/Special:Search?go=Go&search=latest+trending
 sesh = HTMLSession()
 
 page = BeautifulSoup(sesh.get(url).content, "html.parser")
-print(page)
+
+
+items = page.find_all("li", class_="mw-search-result mw-search-result-ns-0")
+for item in items:
+    name = item.find("div", class_="mw-search-result-heading").find("a").text
+    desc = item.find("div", class_="searchresult").text
+    link = item.find("div", class_="mw-search-result-heading").find("a")["href"]
+    print(name, "- | -", desc, "- | -", link)
