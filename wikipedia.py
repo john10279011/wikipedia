@@ -30,5 +30,11 @@ def get_data(soup):
     return data
 
 
+def nextpage(soup):
+    nextpg = soup.find("a", class_="mw-nextlink")["href"]
+    return nextpg
+
+
 soup = getpage(url)
-print(get_data(soup))
+# get_data(soup)
+print(nextpage(soup))
