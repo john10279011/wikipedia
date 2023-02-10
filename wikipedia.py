@@ -8,6 +8,8 @@ sesh = HTMLSession()
 
 page = BeautifulSoup(sesh.get(url).content, "html.parser")
 
+data = []
+
 
 def getpage(url):
     page = sesh.get(url)
@@ -16,7 +18,6 @@ def getpage(url):
 
 
 def get_data(soup):
-    data = []
     items = page.find_all("li", class_="mw-search-result mw-search-result-ns-0")
     print("total Items found=", len(items))
     for item in items:
@@ -45,3 +46,7 @@ try:
         print("scraping page-> ", nextpage(soup))
 except:
     print("all pages done")
+
+
+scraped = pd.DataFrame(data)
+print(scraped)
