@@ -18,7 +18,7 @@ def getpage(url):
 def get_data(soup):
     data = []
     items = page.find_all("li", class_="mw-search-result mw-search-result-ns-0")
-    print("total Items =", len(items))
+    print("total Items found=", len(items))
     for item in items:
         name = item.find("div", class_="mw-search-result-heading").find("a").text
         desc = item.find("div", class_="searchresult").text
@@ -37,9 +37,11 @@ def nextpage(soup):
     return nextpg
 
 
-while True:
-
-    soup = getpage(url)
-    # get_data(soup)
-    url = nextpage(soup)
-    print(nextpage(soup))
+try:
+    while True:
+        soup = getpage(url)
+        get_data(soup)
+        url = nextpage(soup)
+        print("scraping page-> ", nextpage(soup))
+except:
+    print("all pages done")
